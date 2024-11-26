@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import Card from './components/Card';
 
-const cardImages = [{src: "/1.jpg"}, {src: "/2.jpg"}, {src: "/3.jpg"}, {src: "/4.jpg"}, {src: "/5.jpg"}, {src: "/6.jpg"},
-  {src: "/7.jpg"}, {src: "/8.jpg"}];
+const cardImages = [{src: "/1.jpg", flipped: false}, {src: "/2.jpg", flipped: false}, 
+  {src: "/3.jpg", flipped: false}, {src: "/4.jpg", flipped: false}, 
+  {src: "/5.jpg", flipped: false}, {src: "/6.jpg", flipped: false},
+  {src: "/7.jpg", flipped: false}, {src: "/8.jpg", flipped: false}];
 
   // más imagenes para el caso de 36 cartas y 64 cartas
   /*}, {src: "/9.jpg"}, {src: "/10.jpg"}, {src: "/11.jpg"}, {src: "/12.jpg"},
@@ -15,12 +17,47 @@ const cardImages = [{src: "/1.jpg"}, {src: "/2.jpg"}, {src: "/3.jpg"}, {src: "/4
 function App() {
 
   const [cards, setCards] = useState([]);
+  const [firstChoice, setFirstChoice] = useState(null);
+  const [secondChoice, setSecondChoice] = useState(null);
 
   const shuffleCards = () => {
     const shuffledCards = [...cardImages, ...cardImages]
      .sort(() => Math.random() - 0.5)
      .map((card) => ({...card, id: Math.random()}));
     setCards(shuffledCards);
+  };
+
+  const handleChoice = (card) => {
+    firstChoice ? setSecondChoice(card) : setFirstChoice(card);
+  };
+
+  const updateMatchedCards = () => {
+    setCards(prevCards => {
+      return prevCards.map(card => {
+        if (card.src === firstChoice.src) {
+          return {...card, flipped: true};
+        } else {
+          return card;
+        }
+      })
+    });
+  };
+
+  useEffect(() => {
+    if (firstChoice && secondChoice) {
+      if (firstChoice.src === secondChoice.src) {
+        updateMatchedCards();
+        resetChoices();
+      } else {
+
+        resetChoices();
+      }
+    }
+  }, [firstChoice, secondChoice]);
+
+  const resetChoices = () => {
+    setFirstChoice(null);
+    setSecondChoice(null);
   };
 
   return (
@@ -33,7 +70,10 @@ function App() {
         </div>
         <div className='board-grid'>
             {cards.map(card => (
-                <Card key={card.id} src={card.src} flipped={true} />
+                <Card 
+                  key={card.id} 
+                  card={card}
+                  handleChoice={handleChoice}  />
             ))}
         </div>
     </div>
