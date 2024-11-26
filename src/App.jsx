@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import './App.css'
 import Card from './components/Card';
 
-const cardImages = [{src: "/1.jpg", flipped: false}, {src: "/2.jpg", flipped: false}, 
-  {src: "/3.jpg", flipped: false}, {src: "/4.jpg", flipped: false}, 
-  {src: "/5.jpg", flipped: false}, {src: "/6.jpg", flipped: false},
-  {src: "/7.jpg", flipped: false}, {src: "/8.jpg", flipped: false}];
+const cardImages = [{src: "/1.jpg", matched: false}, {src: "/2.jpg", matched: false}, 
+  {src: "/3.jpg", matched: false}, {src: "/4.jpg", matched: false}, 
+  {src: "/5.jpg", matched: false}, {src: "/6.jpg", matched: false},
+  {src: "/7.jpg", matched: false}, {src: "/8.jpg", matched: false}];
 
   // más imagenes para el caso de 36 cartas y 64 cartas
   /*}, {src: "/9.jpg"}, {src: "/10.jpg"}, {src: "/11.jpg"}, {src: "/12.jpg"},
@@ -35,7 +35,7 @@ function App() {
     setCards(prevCards => {
       return prevCards.map(card => {
         if (card.src === firstChoice.src) {
-          return {...card, flipped: true};
+          return {...card, matched: true};
         } else {
           return card;
         }
@@ -49,8 +49,7 @@ function App() {
         updateMatchedCards();
         resetChoices();
       } else {
-
-        resetChoices();
+        setTimeout(() => resetChoices(), 500);
       }
     }
   }, [firstChoice, secondChoice]);
@@ -73,7 +72,9 @@ function App() {
                 <Card 
                   key={card.id} 
                   card={card}
-                  handleChoice={handleChoice}  />
+                  handleChoice={handleChoice}  
+                  flipped={card === firstChoice || card === secondChoice || card.matched}
+                />
             ))}
         </div>
     </div>
