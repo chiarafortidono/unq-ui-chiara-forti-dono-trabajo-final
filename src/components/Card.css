@@ -6,12 +6,13 @@
 }
 
 .card img {
+    background: rgb(235, 224, 199);
     width: 100%;
     display: block;
     border: 2px solid black;
     border-radius: 5px;
-  height: 100%;
-  object-fit: cover; /* Mantiene la proporción de las imágenes sin deformarlas */
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción de las imágenes sin deformarlas */
 }
 
 .card .card-front {
