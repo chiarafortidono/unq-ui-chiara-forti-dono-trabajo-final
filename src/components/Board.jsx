@@ -20,7 +20,7 @@ const cardImages = [{src: "/1.jpg", matched: false}, {src: "/2.jpg", matched: fa
     {src: "/29.jpg", matched: false}, {src: "/30.jpg", matched: false},
     {src: "/31.jpg", matched: false}, {src: "/32.jpg", matched: false}];
 
-const Board = () => {
+const Board = ({size}) => {
     const [cards, setCards] = useState([]);
     const [firstChoice, setFirstChoice] = useState(null);
     const [secondChoice, setSecondChoice] = useState(null);
@@ -60,25 +60,19 @@ const Board = () => {
       setDisabled(false);
     };
 
-    const shuffleCards = (size) => {
+    const shuffleCards = (size) => { //si lo dejo así los pares siempre salen en el mismo lugar
         const shuffledImages = cardImages.sort(() => Math.random() - 0.5);
-        const images = shuffledImages.slice(0, size);
+        const images = shuffledImages.slice(0, size/2);
         const pairs = images.concat(images)
             .map((card) => ({...card, id: Math.random()}));
         setCards(pairs);
-
-        //const images = cardImages.slice(24, 32);
-        //const pairs = images.concat(images)
-        // .sort(() => Math.random() - 0.5)
-        // .map((card) => ({...card, id: Math.random()}));
-        //setCards(pairs);
     };
 
     return (
       <div>
-        <button onClick={() => shuffleCards(8)}>New game</button>
+        <button onClick={() => shuffleCards(size)}>New game</button>
           <div className='board-grid-container'>
-            <div className='board-grid'>
+            <div className={'board-grid-64'}>
                 {cards.map(card => (
                     <Card 
                       key={card.id} 
