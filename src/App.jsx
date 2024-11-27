@@ -19,6 +19,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [firstChoice, setFirstChoice] = useState(null);
   const [secondChoice, setSecondChoice] = useState(null);
+  const [disabled, setDisabled] = useState(false);
 
   const shuffleCards = () => {
     const shuffledCards = [...cardImages, ...cardImages]
@@ -45,6 +46,7 @@ function App() {
 
   useEffect(() => {
     if (firstChoice && secondChoice) {
+      setDisabled(true);
       if (firstChoice.src === secondChoice.src) {
         updateMatchedCards();
         resetChoices();
@@ -57,25 +59,26 @@ function App() {
   const resetChoices = () => {
     setFirstChoice(null);
     setSecondChoice(null);
+    setDisabled(false);
   };
 
   return (
     <div>
         <div>
-            <h1>Memotest</h1>
-        </div>
-        <div>
           <button onClick={shuffleCards}>New game</button>
         </div>
-        <div className='board-grid'>
-            {cards.map(card => (
-                <Card 
-                  key={card.id} 
-                  card={card}
-                  handleChoice={handleChoice}  
-                  flipped={card === firstChoice || card === secondChoice || card.matched}
-                />
-            ))}
+        <div className='board-grid-container'>
+          <div className='board-grid'>
+              {cards.map(card => (
+                  <Card 
+                    key={card.id} 
+                    card={card}
+                    handleChoice={handleChoice}  
+                    flipped={card === firstChoice || card === secondChoice || card.matched}
+                    disabled={disabled}
+                  />
+              ))}
+          </div>
         </div>
     </div>
   )

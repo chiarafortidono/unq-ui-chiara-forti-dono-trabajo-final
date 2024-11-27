@@ -1,6 +1,8 @@
 .card {
     position: relative;
     cursor: pointer;
+    width: 100%; /* Cada carta ocupa completamente la celda */
+    height: 100%; /* Cada carta ocupa completamente la celda */
 }
 
 .card img {
@@ -8,6 +10,8 @@
     display: block;
     border: 2px solid black;
     border-radius: 5px;
+  height: 100%;
+  object-fit: cover; /* Mantiene la proporción de las imágenes sin deformarlas */
 }
 
 .card .card-front {
