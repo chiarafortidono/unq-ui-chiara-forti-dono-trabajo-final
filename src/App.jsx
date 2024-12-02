@@ -23,7 +23,6 @@ const cardImages = [{src: "/1.jpg", matched: false}, {src: "/2.jpg", matched: fa
 
 function App() {
   const [size, setSize] = useState(16);
-  /*const [players, setPlayers] = useState(1);*/
   const [startGame, setStartGame] = useState(false);
   const [cards, setCards] = useState([]);
 
@@ -35,13 +34,7 @@ function App() {
     setCards(pairs);
   };
 
-  /*const playerOptions = [ {value: 1, label: 'One player'}, {value: 2, label: 'Two players'} ];*/
-
   const sizeOptions = [ {value: 16, label: '4x4'}, {value: 36, label: '6x6'}, {value: 64, label: '8x8'}];
-
-  /*const handlePlayersChange = (option) => {
-    setPlayers(option.value);
-  }*/
 
   const handleSizeChange = (option) => {
     setSize(option.value);
@@ -52,21 +45,19 @@ function App() {
     setStartGame(true);
   }
 
+  const handleRestart = () => {
+    setStartGame(false);
+    setCards([]);
+  }
+
   return (
     <div>
       {startGame ? (
-        <Board size={size} players={1} cards={cards} style={`board-grid-${size}`}/>
+        <Board cards={cards} style={`board-grid-${size}`} onRestart={handleRestart}/>
       ) : (
       <div className='menu-container'>
         <img src='/memotest.png'/>
         <div className='dropdowns-container'>
-          {/*<Dropdown 
-            className='dropdown'
-            options={playerOptions} 
-            value={'One player'}
-            onChange={handlePlayersChange}
-            placeholder={"Select the number of players"}
-          />*/}
           <Dropdown 
             className='dropdown'
             options={sizeOptions}

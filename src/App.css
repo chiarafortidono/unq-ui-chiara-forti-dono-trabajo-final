@@ -13,6 +13,12 @@ html, body {
   align-items: center;
 }
 
+h2{
+  color: rgb(174,108,44);
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
 .menu-container{
   display: flex;
   justify-content: center;
@@ -33,13 +39,24 @@ html, body {
   height: 100%;
 }
 
-button, .dropdown {
+button {
   border: 2px solid rgb(174,108,44);
   padding: 6px, 12px;
   border-radius: 4px;
   cursor: pointer;
   color: rgb(174,108,44);
   margin: 10px;
+  margin-bottom: 20px;
+  height: max-content;
+  width: max-content;
+  font-size: 1rem;
+}
+
+.dropdown {
+  border: 2px solid rgb(174,108,44);
+  border-radius: 4px;
+  cursor: pointer;
+  color: rgb(174,108,44);
   margin-bottom: 20px;
   height: max-content;
   width: max-content;

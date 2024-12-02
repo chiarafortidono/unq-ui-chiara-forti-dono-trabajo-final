@@ -3,11 +3,12 @@ import Card from "./Card";
 import { useEffect, useState } from 'react';
 import './Board.css';
 
-const Board = ({size, players, cards, style}) => {
+const Board = ({cards, style, onRestart}) => {
     const [firstChoice, setFirstChoice] = useState(null);
     const [secondChoice, setSecondChoice] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const [pairs, setPairs] = useState(cards);
+    const [win, setWin] = useState(false);
 
     const handleChoice = (card) => {
       firstChoice ? setSecondChoice(card) : setFirstChoice(card);
@@ -22,7 +23,7 @@ const Board = ({size, players, cards, style}) => {
             return card;
           }
         })
-      });
+      })
     };
 
     useEffect(() => {
@@ -37,6 +38,12 @@ const Board = ({size, players, cards, style}) => {
       }
     }, [firstChoice, secondChoice]);
 
+    useEffect(() => {
+      if (pairs.every((card) => card.matched)) {
+        setTimeout(() => setWin(true), 700);
+      }
+    }, [pairs]);
+
     const resetChoices = () => {
       setFirstChoice(null);
       setSecondChoice(null);
@@ -45,19 +52,26 @@ const Board = ({size, players, cards, style}) => {
     
     return (
       <div>
-          <div className='board-grid-container'>
-            <div className={style}>
-                {pairs.map(card => (
-                    <Card 
-                      key={card.id} 
-                      card={card}
-                      handleChoice={handleChoice}  
-                      flipped={card === firstChoice || card === secondChoice || card.matched}
-                      disabled={disabled}
-                    />
-                ))}
-            </div>
+        {win ? (
+          <div className='win-container'>
+              <img src='/memotest.png'/>
+              <h2>You won! 🎉</h2>
+              <button onClick={onRestart}>Play Again</button>
           </div>
+        ) : (
+          <div className='board-grid-container'>
+          <div className={style}>
+              {pairs.map(card => (
+                  <Card 
+                    key={card.id} 
+                    card={card}
+                    handleChoice={handleChoice}  
+                    flipped={card === firstChoice || card === secondChoice || card.matched}
+                    disabled={disabled}
+                  />
+              ))}
+          </div>
+        </div>)}
       </div>
     )
 };
