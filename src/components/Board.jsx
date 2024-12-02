@@ -3,18 +3,19 @@ import Card from "./Card";
 import { useEffect, useState } from 'react';
 import './Board.css';
 
-const Board = ({size, players, cards}) => {
+const Board = ({size, players, cards, style}) => {
     const [firstChoice, setFirstChoice] = useState(null);
     const [secondChoice, setSecondChoice] = useState(null);
     const [disabled, setDisabled] = useState(false);
+    const [pairs, setPairs] = useState(cards);
 
     const handleChoice = (card) => {
       firstChoice ? setSecondChoice(card) : setFirstChoice(card);
     };
 
     const updateMatchedCards = () => {
-      setCards(prevCards => {
-        return prevCards.map(card => {
+      setPairs(prevPairs => {
+        return prevPairs.map(card => {
           if (card.src === firstChoice.src) {
             return {...card, matched: true};
           } else {
@@ -45,8 +46,8 @@ const Board = ({size, players, cards}) => {
     return (
       <div>
           <div className='board-grid-container'>
-            <div className='board-grid-18'>
-                {cards.map(card => (
+            <div className={style}>
+                {pairs.map(card => (
                     <Card 
                       key={card.id} 
                       card={card}

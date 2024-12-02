@@ -8,19 +8,21 @@ html, body {
   overflow: hidden;
 }
 
-button {
-  background: none;
-  border: 2px solid black;
+button, .dropdown {
+  border: 2px solid rgb(73, 48, 14);
   padding: 6px, 12px;
   border-radius: 4px;
   cursor: pointer;
   color: rgb(92, 64, 16);
-  font-weight: bold;
-  font-size: medium;
   margin: 10px;
 }
 
 button:hover{
   background: grey;
-  color: red;
+}
+
+.dropdowns-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

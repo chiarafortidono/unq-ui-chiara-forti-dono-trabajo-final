@@ -17,7 +17,7 @@
     gap: 10px;
   }
 
-  .board-grid-18{ /* <Board size={36} /> */
+  .board-grid-36{ /* <Board size={36} /> */
     display: grid;
     width: 90vmin;
     height: 90vmin;

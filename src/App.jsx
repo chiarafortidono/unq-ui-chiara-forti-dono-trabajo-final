@@ -22,8 +22,8 @@ const cardImages = [{src: "/1.jpg", matched: false}, {src: "/2.jpg", matched: fa
   {src: "/31.jpg", matched: false}, {src: "/32.jpg", matched: false}];
 
 function App() {
-  const [size, setSize] = useState(0);
-  const [players, setPlayers] = useState(0);
+  const [size, setSize] = useState(16);
+  /*const [players, setPlayers] = useState(1);*/
   const [startGame, setStartGame] = useState(false);
   const [cards, setCards] = useState([]);
 
@@ -35,13 +35,13 @@ function App() {
     setCards(pairs);
   };
 
-  const playerOptions = [ 1, 2 ];
+  /*const playerOptions = [ {value: 1, label: 'One player'}, {value: 2, label: 'Two players'} ];*/
 
-  const sizeOptions = [ {value: 16, label:'4x4'}, {value: 36, label:'6x6'}, {value: 36, label: '8x8'}];
+  const sizeOptions = [ {value: 16, label: '4x4'}, {value: 36, label: '6x6'}, {value: 64, label: '8x8'}];
 
-  const handlePlayersChange = (option) => {
+  /*const handlePlayersChange = (option) => {
     setPlayers(option.value);
-  }
+  }*/
 
   const handleSizeChange = (option) => {
     setSize(option.value);
@@ -55,20 +55,21 @@ function App() {
   return (
     <div>
       {startGame ? (
-        <Board size={size} players={players} cards={cards} />
+        <Board size={size} players={1} cards={cards} style={`board-grid-${size}`}/>
       ) : (
       <div>
         <h1>Memotest</h1>
-        <div>
-          <Dropdown 
+        <div className='dropdowns-container'>
+          {/*<Dropdown 
+            className='dropdown'
             options={playerOptions} 
-            value={1}
+            value={'One player'}
             onChange={handlePlayersChange}
             placeholder={"Select the number of players"}
-          /> 
-        </div>
-        <div>
+          />*/}
+          <p>Choose the size of the board:</p>
           <Dropdown 
+            className='dropdown'
             options={sizeOptions} 
             value={'4x4'}
             onChange={handleSizeChange}
