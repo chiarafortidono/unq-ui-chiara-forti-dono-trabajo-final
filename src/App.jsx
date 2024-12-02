@@ -70,10 +70,10 @@ function App() {
           <p>Choose the size of the board:</p>
           <Dropdown 
             className='dropdown'
-            options={sizeOptions} 
-            value={'4x4'}
+            options={sizeOptions}
+            placeholder="Select the size of the board"
+            value={size}
             onChange={handleSizeChange}
-            placeholder={"Select the size of the board"}
           />  
         </div>
         <button onClick={handleClick}>New game</button>
