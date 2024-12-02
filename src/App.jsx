@@ -57,8 +57,8 @@ function App() {
       {startGame ? (
         <Board size={size} players={1} cards={cards} style={`board-grid-${size}`}/>
       ) : (
-      <div>
-        <h1>Memotest</h1>
+      <div className='menu-container'>
+        <img src='/memotest.png'/>
         <div className='dropdowns-container'>
           {/*<Dropdown 
             className='dropdown'
