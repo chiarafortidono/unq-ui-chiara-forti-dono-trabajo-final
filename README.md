@@ -1,12 +1,13 @@
 # UIs » Trabajo Final Integrador (TFI) » 2°C 2024
-## Chiara Forti Dono
 
-## Cómo descargar, instalar y ejecutar localmente el proyecto
+Chiara Forti Dono
+
+## Cómo descargar, instalar y ejecutar localmente el proyecto:
 
 1. Clonar el repositorio desde la terminal con el comando git clone, seguido de la URL de github del repositorio.
 
 ```sh 
-git clone https://github.com/chiarafortidono/unq-ui-chiara-forti-dono-trabajo-final
+    git clone https://github.com/chiarafortidono/unq-ui-chiara-forti-dono-trabajo-final
 ```
 
 2. Navegar al directorio del proyecto con el comando cd unq-ui-chiara-forti-dono-trabajo-final.
@@ -27,4 +28,4 @@ git clone https://github.com/chiarafortidono/unq-ui-chiara-forti-dono-trabajo-fi
     npm run dev
 ```
 
-5. Abrir el navegador e ingresar a `http://localhost:5173` para ver la aplicación en funcionamiento.
+5. Abrir el navegador e ingresar a [[`http://localhost:5173`](http://localhost:5173)] para ver la aplicación en funcionamiento.
