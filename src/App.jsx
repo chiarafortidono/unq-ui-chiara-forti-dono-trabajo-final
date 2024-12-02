@@ -67,12 +67,10 @@ function App() {
             onChange={handlePlayersChange}
             placeholder={"Select the number of players"}
           />*/}
-          <p>Choose the size of the board:</p>
           <Dropdown 
             className='dropdown'
             options={sizeOptions}
-            placeholder="Select the size of the board"
-            value={size}
+            value="Select the size of the board"
             onChange={handleSizeChange}
           />  
         </div>
