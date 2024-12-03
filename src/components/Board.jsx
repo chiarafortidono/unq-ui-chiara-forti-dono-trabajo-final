@@ -26,15 +26,19 @@ const Board = ({cards, style, onRestart}) => {
       })
     };
 
+    const updateIfMatched = () => {
+      if (firstChoice.src === secondChoice.src) {
+        updateMatchedCards();
+        resetChoices();
+      } else {
+        setTimeout(() => resetChoices(), 500);
+      }
+    };
+
     useEffect(() => {
       if (firstChoice && secondChoice) {
         setDisabled(true);
-        if (firstChoice.src === secondChoice.src) {
-          updateMatchedCards();
-          resetChoices();
-        } else {
-          setTimeout(() => resetChoices(), 500);
-        }
+        updateIfMatched();
       }
     }, [firstChoice, secondChoice]);
 
