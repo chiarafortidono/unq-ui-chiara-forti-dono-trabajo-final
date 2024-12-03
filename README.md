@@ -28,4 +28,7 @@ Chiara Forti Dono
     npm run dev
 ```
 
-5. Abrir el navegador e ingresar a [[`http://localhost:5173`](http://localhost:5173)] para ver la aplicación en funcionamiento.
+5. Abrir el navegador e ingresar a [`http://localhost:5173`](http://localhost:5173) para ver la aplicación en funcionamiento.
+
+> [!IMPORTANT]
+> En caso de que el puerto 5173 se encuentre en uso por alguna otra aplicación o proceso, en la terminal aparecerá el nuevo link con otro puerto para acceder a la aplicación.
